@@ -6,7 +6,7 @@ from pathlib import Path
 st.set_page_config(page_title="手残りシミュレーション", page_icon="💰", layout="wide")
 
 # ──────────────────────────────
-# デザインCSS（ゴールド × ダークネイビー）
+# デザインCSS（信頼性重視：白背景×ネイビー×控えめゴールド）
 # ──────────────────────────────
 st.markdown("""
 <style>
@@ -14,8 +14,8 @@ st.markdown("""
 
 /* 全体 */
 .stApp {
-    background-color: #0a1628;
-    color: #e8e8e8;
+    background-color: #f5f6f8;
+    color: #2c3e50;
     font-family: 'Noto Sans JP', sans-serif;
 }
 
@@ -30,135 +30,143 @@ footer { visibility: hidden; }
     padding: 2rem 1.5rem;
 }
 
-/* ゴールドヘッダー */
+/* ヘッダー */
 .gold-header {
-    background: linear-gradient(135deg, #b8860b 0%, #daa520 50%, #b8860b 100%);
-    color: #0a1628;
+    background: #1a2744;
+    color: #ffffff;
     padding: 40px 30px;
-    border-radius: 12px;
+    border-radius: 8px;
     text-align: center;
     margin-bottom: 30px;
-    box-shadow: 0 4px 20px rgba(218, 165, 32, 0.3);
+    border-bottom: 4px solid #b8960b;
 }
 .gold-header h1 {
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 900;
     margin-bottom: 8px;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 .gold-header p {
     font-size: 14px;
-    opacity: 0.85;
+    opacity: 0.8;
     margin: 0;
 }
 
 /* セクションカード */
 .section-card {
-    background: linear-gradient(145deg, #111d35, #162040);
-    border: 1px solid #253560;
-    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e0e3e8;
+    border-radius: 8px;
     padding: 28px;
     margin: 20px 0;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
 }
 .section-card h2 {
-    color: #daa520;
-    font-size: 20px;
+    color: #1a2744;
+    font-size: 18px;
     font-weight: 700;
     margin-bottom: 16px;
     padding-bottom: 10px;
-    border-bottom: 2px solid #253560;
+    border-bottom: 2px solid #e8eaef;
 }
 
-/* ゴールドのメトリクスカード */
+/* メトリクスカード */
 .metric-card {
-    background: linear-gradient(145deg, #162040, #1a2850);
-    border: 1px solid #253560;
-    border-radius: 10px;
-    padding: 20px;
+    background: #f8f9fb;
+    border: 1px solid #e0e3e8;
+    border-radius: 8px;
+    padding: 18px;
     text-align: center;
     margin: 8px 0;
 }
 .metric-card .label {
-    color: #8899bb;
-    font-size: 13px;
-    margin-bottom: 6px;
+    color: #6b7b8d;
+    font-size: 12px;
+    margin-bottom: 4px;
 }
 .metric-card .value {
-    color: #daa520;
-    font-size: 28px;
+    color: #1a2744;
+    font-size: 26px;
     font-weight: 900;
 }
 .metric-card .value-white {
-    color: #ffffff;
-    font-size: 28px;
+    color: #1a2744;
+    font-size: 26px;
     font-weight: 900;
 }
 .metric-card-highlight {
-    background: linear-gradient(145deg, #1a2040, #1e2850);
-    border: 2px solid #daa520;
-    border-radius: 10px;
-    padding: 20px;
+    background: #ffffff;
+    border: 2px solid #1a2744;
+    border-radius: 8px;
+    padding: 18px;
     text-align: center;
     margin: 8px 0;
-    box-shadow: 0 0 15px rgba(218, 165, 32, 0.15);
+}
+.metric-card-highlight .label {
+    color: #6b7b8d;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+.metric-card-highlight .value {
+    color: #b8960b;
+    font-size: 26px;
+    font-weight: 900;
 }
 
 /* ポイント吹き出し */
 .point-box {
-    background: linear-gradient(145deg, #1a2545, #1e2d55);
-    border-left: 4px solid #daa520;
-    border-radius: 0 10px 10px 0;
-    padding: 18px 22px;
+    background: #f0f4f8;
+    border-left: 4px solid #1a2744;
+    border-radius: 0 6px 6px 0;
+    padding: 16px 20px;
     margin: 16px 0;
-    color: #c8d0e0;
-    font-size: 15px;
-    line-height: 1.7;
+    color: #3a4a5c;
+    font-size: 14px;
+    line-height: 1.8;
 }
-.point-box strong { color: #daa520; }
+.point-box strong { color: #1a2744; }
 
 /* 利回りカード */
 .rate-card {
-    border-radius: 10px;
-    padding: 22px;
+    border-radius: 8px;
+    padding: 20px;
     text-align: center;
     margin: 8px 0;
 }
 .rate-card .rate-label {
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
-    margin-bottom: 8px;
+    margin-bottom: 6px;
 }
 .rate-card .rate-value {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 900;
     margin-bottom: 4px;
 }
 .rate-card .rate-sub {
     font-size: 12px;
-    opacity: 0.7;
+    opacity: 0.6;
 }
 .rate-3 {
-    background: linear-gradient(145deg, #1a3030, #1e3838);
-    border: 1px solid #2d6b5a;
+    background: #f0faf8;
+    border: 1px solid #b8e0d8;
 }
-.rate-3 .rate-label { color: #4ecdc4; }
-.rate-3 .rate-value { color: #4ecdc4; }
+.rate-3 .rate-label { color: #2a8a7a; }
+.rate-3 .rate-value { color: #2a8a7a; }
 
 .rate-5 {
-    background: linear-gradient(145deg, #1a2545, #1e2d55);
-    border: 2px solid #daa520;
-    box-shadow: 0 0 15px rgba(218, 165, 32, 0.15);
+    background: #fffdf5;
+    border: 2px solid #b8960b;
 }
-.rate-5 .rate-label { color: #daa520; }
-.rate-5 .rate-value { color: #daa520; }
+.rate-5 .rate-label { color: #8a7008; }
+.rate-5 .rate-value { color: #8a7008; }
 
 .rate-8 {
-    background: linear-gradient(145deg, #2a1a35, #351e45);
-    border: 1px solid #6b3fa0;
+    background: #f5f0fa;
+    border: 1px solid #c8b8e0;
 }
-.rate-8 .rate-label { color: #a88beb; }
-.rate-8 .rate-value { color: #a88beb; }
+.rate-8 .rate-label { color: #6a4fa0; }
+.rate-8 .rate-value { color: #6a4fa0; }
 
 /* まとめテーブル */
 .summary-table {
@@ -167,23 +175,23 @@ footer { visibility: hidden; }
     margin: 16px 0;
 }
 .summary-table th {
-    background: #1a2545;
-    color: #8899bb;
+    background: #f0f2f5;
+    color: #6b7b8d;
     padding: 12px 16px;
     text-align: left;
     font-weight: 700;
-    font-size: 14px;
-    border-bottom: 2px solid #253560;
+    font-size: 13px;
+    border-bottom: 2px solid #e0e3e8;
 }
 .summary-table td {
     padding: 14px 16px;
-    border-bottom: 1px solid #1e2d50;
+    border-bottom: 1px solid #eceef2;
     font-size: 15px;
-    color: #c8d0e0;
+    color: #2c3e50;
 }
 .summary-table .total-row td {
-    border-top: 2px solid #daa520;
-    color: #daa520;
+    border-top: 2px solid #1a2744;
+    color: #b8960b;
     font-weight: 900;
     font-size: 18px;
     padding-top: 16px;
@@ -191,56 +199,44 @@ footer { visibility: hidden; }
 
 /* CTA */
 .cta-box {
-    background: linear-gradient(135deg, #b8860b 0%, #daa520 50%, #b8860b 100%);
-    color: #0a1628;
+    background: #1a2744;
+    color: #ffffff;
     padding: 35px 30px;
-    border-radius: 12px;
+    border-radius: 8px;
     text-align: center;
     margin: 30px 0;
-    box-shadow: 0 4px 20px rgba(218, 165, 32, 0.3);
+    border-bottom: 4px solid #b8960b;
 }
 .cta-box h2 {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900;
     margin-bottom: 12px;
-    color: #0a1628;
+    color: #ffffff;
 }
 .cta-box p {
-    font-size: 15px;
-    color: #1a2545;
+    font-size: 14px;
+    color: #c0c8d8;
     line-height: 1.8;
     margin-bottom: 8px;
-}
-.cta-box .cta-button {
-    display: inline-block;
-    background: #0a1628;
-    color: #daa520;
-    padding: 14px 40px;
-    font-size: 18px;
-    font-weight: 700;
-    text-decoration: none;
-    border-radius: 8px;
-    margin-top: 15px;
-    border: 2px solid #0a1628;
 }
 
 /* フッター */
 .footer-note {
-    color: #556080;
+    color: #8899aa;
     font-size: 11px;
     line-height: 1.6;
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 1px solid #1e2d50;
+    border-top: 1px solid #e0e3e8;
 }
 
 /* Streamlitデフォルトの上書き */
-.stMetric label { color: #8899bb !important; }
-.stMetric [data-testid="stMetricValue"] { color: #daa520 !important; }
+.stMetric label { color: #6b7b8d !important; }
+.stMetric [data-testid="stMetricValue"] { color: #1a2744 !important; }
 div[data-testid="stForm"] {
-    background: #111d35;
-    border: 1px solid #253560;
-    border-radius: 12px;
+    background: #ffffff;
+    border: 1px solid #e0e3e8;
+    border-radius: 8px;
     padding: 24px;
 }
 </style>
