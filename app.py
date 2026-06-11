@@ -390,7 +390,7 @@ if r:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # ──── 掛金は全額経費 ────
-    st.markdown("""<div class="section-card"><h2>💼 掛金は全額「会社の経費」になります</h2>""", unsafe_allow_html=True)
+    st.markdown("""<div class="section-card"><h2>💼 掛金は全額「会社の経費」になります</h2><p style="color:#6b7b8d; font-size:13px; margin-top:-8px;">※ 企業型DCの掛金は社長・役員なら全額会社の経費で支払うことが可能です。</p>""", unsafe_allow_html=True)
 
     c1, c2 = st.columns(2)
     with c1:
