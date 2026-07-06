@@ -377,7 +377,8 @@ if r:
     """, unsafe_allow_html=True)
 
     # ──── 将来資産（利回り別）── 一番上 ────
-    st.markdown("""<div class="section-card"><h2>📈 将来の資産残高（運用利回り別）</h2>""", unsafe_allow_html=True)
+    st.markdown("""<div class="section-card"><h2>📈 将来の資産残高（運用利回り別）</h2>
+    <p style="color:#3a4a5c; font-size:15px; margin-top:-8px; margin-bottom:16px;">この国の制度を導入すると、会社の経費で以下の個人資産を作れる可能性が高いです。</p>""", unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="rate-card rate-8">
