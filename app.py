@@ -481,8 +481,7 @@ if r:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # ──── CTA：セミナー案内 ────
-    # LP未完成のため仮URL。完成後に差し替え
-    seminar_lp_url = "#"
+    seminar_lp_url = "https://contents.semeru-shigyo.com/401k-seminar/"
     st.markdown(f"""
     <a href="{seminar_lp_url}" target="_blank" style="text-decoration:none;">
     <div class="cta-box" style="cursor:pointer; transition: opacity 0.2s;">
