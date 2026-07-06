@@ -486,6 +486,7 @@ if r:
     st.markdown(f"""
     <a href="{seminar_lp_url}" target="_blank" style="text-decoration:none;">
     <div class="cta-box" style="cursor:pointer; transition: opacity 0.2s;">
+        <p style="font-size:16px; color:#ffffff; margin-bottom:16px; line-height:1.8;">会社の経費で個人資産を作れて、社会保険料も安くなる<br>国の制度の使い方について詳しく学びませんか？</p>
         <h2>社長の最終手残り設計セミナーのご案内</h2>
         <p style="font-size:15px; color:#c0c8d8; margin-bottom:12px;">
             〜会社の経費で老後資金を作りながら、法人税も下げる方法〜
