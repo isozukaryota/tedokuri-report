@@ -139,13 +139,15 @@ footer { visibility: hidden; }
     margin-bottom: 6px;
 }
 .rate-card .rate-value {
-    font-size: 28px;
+    font-size: 42px;
     font-weight: 900;
     margin-bottom: 4px;
+    letter-spacing: -1px;
 }
 .rate-card .rate-sub {
-    font-size: 12px;
-    opacity: 0.6;
+    font-size: 13px;
+    opacity: 0.7;
+    margin-top: 4px;
 }
 .rate-3 {
     background: #f0faf8;
@@ -374,41 +376,7 @@ if r:
     </div>
     """, unsafe_allow_html=True)
 
-    # ──── シミュレーション条件 ────
-    st.markdown("""<div class="section-card"><h2>📋 シミュレーション条件</h2>""", unsafe_allow_html=True)
-
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-        st.markdown(f'<div class="metric-card"><div class="label">現在の年齢</div><div class="value-white">{r["age"]}歳</div></div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown(f'<div class="metric-card"><div class="label">積立終了年齢</div><div class="value-white">{r["until_age"]}歳</div></div>', unsafe_allow_html=True)
-    with c3:
-        st.markdown(f'<div class="metric-card"><div class="label">積立期間</div><div class="value-white">{r["years"]}年間</div></div>', unsafe_allow_html=True)
-    with c4:
-        st.markdown(f'<div class="metric-card"><div class="label">毎月の掛金</div><div class="value">¥{r["monthly"]:,}</div></div>', unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ──── 掛金は全額経費 ────
-    st.markdown("""<div class="section-card"><h2>💼 掛金は全額「会社の経費」になります</h2><p style="color:#6b7b8d; font-size:13px; margin-top:-8px;">※ 企業型DCの掛金は社長・役員なら全額会社の経費で支払うことが可能です。</p>""", unsafe_allow_html=True)
-
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown(f'<div class="metric-card"><div class="label">年間の掛金</div><div class="value">¥{r["annual"]:,}</div></div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown(f'<div class="metric-card-highlight"><div class="label">{r["years"]}年間の掛金合計（元本）</div><div class="value">¥{r["total_principal"]:,}</div></div>', unsafe_allow_html=True)
-
-    st.markdown(f"""
-    <div class="point-box">
-        <strong>ポイント：</strong>毎月 <strong>¥{r['monthly']:,}</strong> の掛金は、社長個人のお金ではなく
-        <strong>会社の経費</strong>として処理されます。<br>
-        つまり、<strong>社長の老後資金を会社のお金で積み立てている</strong>ことになります。
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ──── 将来資産（利回り別）────
+    # ──── 将来資産（利回り別）── 一番上 ────
     st.markdown("""<div class="section-card"><h2>📈 将来の資産残高（運用利回り別）</h2>""", unsafe_allow_html=True)
 
     c1, c2, c3 = st.columns(3)
@@ -444,12 +412,39 @@ if r:
     </div>
     """, unsafe_allow_html=True)
 
-    # グラフ
-    if r.get("yearly_data"):
-        import pandas as pd
-        df_chart = pd.DataFrame(r["yearly_data"])
-        df_chart = df_chart.set_index("年目")
-        st.line_chart(df_chart, color=["#556080", "#4ecdc4", "#daa520", "#a88beb"])
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # ──── シミュレーション条件 ────
+    st.markdown("""<div class="section-card"><h2>📋 シミュレーション条件</h2>""", unsafe_allow_html=True)
+
+    c1, c2, c3, c4 = st.columns(4)
+    with c1:
+        st.markdown(f'<div class="metric-card"><div class="label">現在の年齢</div><div class="value-white">{r["age"]}歳</div></div>', unsafe_allow_html=True)
+    with c2:
+        st.markdown(f'<div class="metric-card"><div class="label">積立終了年齢</div><div class="value-white">{r["until_age"]}歳</div></div>', unsafe_allow_html=True)
+    with c3:
+        st.markdown(f'<div class="metric-card"><div class="label">積立期間</div><div class="value-white">{r["years"]}年間</div></div>', unsafe_allow_html=True)
+    with c4:
+        st.markdown(f'<div class="metric-card"><div class="label">毎月の掛金</div><div class="value">¥{r["monthly"]:,}</div></div>', unsafe_allow_html=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
+
+    # ──── 掛金は全額経費 ────
+    st.markdown("""<div class="section-card"><h2>💼 掛金は全額「会社の経費」になります</h2><p style="color:#6b7b8d; font-size:13px; margin-top:-8px;">※ 企業型DCの掛金は社長・役員なら全額会社の経費で支払うことが可能です。</p>""", unsafe_allow_html=True)
+
+    c1, c2 = st.columns(2)
+    with c1:
+        st.markdown(f'<div class="metric-card"><div class="label">年間の掛金</div><div class="value">¥{r["annual"]:,}</div></div>', unsafe_allow_html=True)
+    with c2:
+        st.markdown(f'<div class="metric-card-highlight"><div class="label">{r["years"]}年間の掛金合計（元本）</div><div class="value">¥{r["total_principal"]:,}</div></div>', unsafe_allow_html=True)
+
+    st.markdown(f"""
+    <div class="point-box">
+        <strong>ポイント：</strong>毎月 <strong>¥{r['monthly']:,}</strong> の掛金は、社長個人のお金ではなく
+        <strong>会社の経費</strong>として処理されます。<br>
+        つまり、<strong>社長の老後資金を会社のお金で積み立てている</strong>ことになります。
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -493,9 +488,15 @@ if r:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # ──── CTA：セミナー案内 ────
+    # LP未完成のため仮URL。完成後に差し替え
+    seminar_lp_url = "#"
     st.markdown(f"""
-    <div class="cta-box">
-        <h2>「手残り設計」勉強会のご案内</h2>
+    <a href="{seminar_lp_url}" target="_blank" style="text-decoration:none;">
+    <div class="cta-box" style="cursor:pointer; transition: opacity 0.2s;">
+        <h2>社長の最終手残り設計セミナーのご案内</h2>
+        <p style="font-size:15px; color:#c0c8d8; margin-bottom:12px;">
+            〜会社の経費で老後資金を作りながら、法人税も下げる方法〜
+        </p>
         <p>
             このシミュレーションは概算です。<br>
             実際の導入にあたっては、社長の報酬額・会社の利益状況に応じた詳細な設計が必要です。
@@ -505,8 +506,9 @@ if r:
             ✔ 退職金ゼロの会社でも使える仕組みの全体像<br>
             ✔ 導入企業の具体的な事例
         </p>
-        <p style="font-size:20px; font-weight:900; margin-top:15px;">参加費：無料（通常8,000円）</p>
+        <p style="font-size:20px; font-weight:900; margin-top:15px; color:#fbbf24;">▶ セミナー詳細を見る</p>
     </div>
+    </a>
     """, unsafe_allow_html=True)
 
     # ──── フッター ────
