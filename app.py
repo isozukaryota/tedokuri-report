@@ -379,31 +379,23 @@ if r:
     # ──── 将来資産（利回り別）── 一番上 ────
     st.markdown("""<div class="section-card"><h2>📈 将来の資産残高（運用利回り別）</h2>""", unsafe_allow_html=True)
 
-    c1, c2, c3 = st.columns(3)
-    with c1:
-        st.markdown(f"""
-        <div class="rate-card rate-3">
-            <div class="rate-label">利回り 3%（堅実運用）</div>
-            <div class="rate-value">¥{r['fv_3']:,.0f}</div>
-            <div class="rate-sub">運用益 ¥{r['gain_3']:,.0f}</div>
-        </div>
-        """, unsafe_allow_html=True)
-    with c2:
-        st.markdown(f"""
-        <div class="rate-card rate-5">
-            <div class="rate-label">★ 利回り 5%（標準運用）</div>
-            <div class="rate-value">¥{r['fv_5']:,.0f}</div>
-            <div class="rate-sub">運用益 ¥{r['gain_5']:,.0f}</div>
-        </div>
-        """, unsafe_allow_html=True)
-    with c3:
-        st.markdown(f"""
-        <div class="rate-card rate-8">
-            <div class="rate-label">利回り 8%（積極運用）</div>
-            <div class="rate-value">¥{r['fv_8']:,.0f}</div>
-            <div class="rate-sub">運用益 ¥{r['gain_8']:,.0f}</div>
-        </div>
-        """, unsafe_allow_html=True)
+    st.markdown(f"""
+    <div class="rate-card rate-8">
+        <div class="rate-label">利回り 8%（積極運用）</div>
+        <div class="rate-value">¥{r['fv_8']:,.0f}</div>
+        <div class="rate-sub">運用益 ¥{r['gain_8']:,.0f}</div>
+    </div>
+    <div class="rate-card rate-5">
+        <div class="rate-label">★ 利回り 5%（標準運用）</div>
+        <div class="rate-value">¥{r['fv_5']:,.0f}</div>
+        <div class="rate-sub">運用益 ¥{r['gain_5']:,.0f}</div>
+    </div>
+    <div class="rate-card rate-3">
+        <div class="rate-label">利回り 3%（堅実運用）</div>
+        <div class="rate-value">¥{r['fv_3']:,.0f}</div>
+        <div class="rate-sub">運用益 ¥{r['gain_3']:,.0f}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="point-box">
