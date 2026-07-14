@@ -377,16 +377,7 @@ if r:
     """, unsafe_allow_html=True)
 
     # ──── 将来資産（利回り別）── 一番上 ────
-    st.markdown(f"""<div class="section-card">
-    <h2 style="font-size:22px; margin-bottom:20px;">📈 将来の資産残高（運用利回り別）</h2>
-
-    <div style="background:#1a2744; border-radius:8px; padding:24px; margin-bottom:24px; text-align:center;">
-        <p style="color:#c0a346; font-size:20px; font-weight:900; line-height:1.7; margin:0;">
-            元本 ¥{r['total_principal']:,}（{r['until_age']}歳まで毎月¥{r['monthly']:,}を積み立て）で、<br>
-            これだけの個人資産を作れる可能性が高いです！
-        </p>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"""<div class="section-card"><h2 style="font-size:22px; margin-bottom:20px;">📈 将来の資産残高（運用利回り別）</h2><div style="background:#1a2744; border-radius:8px; padding:24px; margin-bottom:24px; text-align:center;"><p style="color:#c0a346; font-size:20px; font-weight:900; line-height:1.7; margin:0;">元本 ¥{r['total_principal']:,}（{r['until_age']}歳まで毎月¥{r['monthly']:,}を積み立て）で、<br>これだけの個人資産を作れる可能性が高いです！</p></div>""", unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="rate-card rate-8">
@@ -424,25 +415,7 @@ if r:
     st.markdown("</div>", unsafe_allow_html=True)
 
     # ──── 法人税の節税効果（目立つ版）────
-    st.markdown(f"""
-    <div class="section-card">
-        <h2 style="font-size:22px;">🏢 法人税の節税効果</h2>
-        <div style="background:#1a2744; border-radius:8px; padding:24px; text-align:center;">
-            <p style="color:#ffffff; font-size:17px; line-height:1.8; margin-bottom:12px;">
-                会社の経費で年間 <span style="color:#c0a346; font-size:22px; font-weight:900;">¥{r['annual']:,}</span> を処理できるので
-            </p>
-            <p style="color:#ffffff; font-size:17px; line-height:1.8; margin-bottom:8px;">
-                法人税の節税効果として
-            </p>
-            <p style="color:#c0a346; font-size:36px; font-weight:900; margin-bottom:8px;">
-                年間 ¥{r['annual_tax_saving']:,.0f}
-            </p>
-            <p style="color:#ffffff; font-size:18px; font-weight:700; margin:0;">
-                {r['years']}年間で合計 <span style="color:#c0a346; font-size:28px; font-weight:900;">¥{r['total_tax_saving']:,.0f}</span> の節税
-            </p>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f"""<div class="section-card"><h2 style="font-size:22px;">🏢 法人税の節税効果</h2><div style="background:#1a2744; border-radius:8px; padding:24px; text-align:center;"><p style="color:#ffffff; font-size:17px; line-height:1.8; margin-bottom:12px;">会社の経費で年間 <span style="color:#c0a346; font-size:22px; font-weight:900;">¥{r['annual']:,}</span> を処理できるので</p><p style="color:#ffffff; font-size:17px; line-height:1.8; margin-bottom:8px;">法人税の節税効果として</p><p style="color:#c0a346; font-size:36px; font-weight:900; margin-bottom:8px;">年間 ¥{r['annual_tax_saving']:,.0f}</p><p style="color:#ffffff; font-size:18px; font-weight:700; margin:0;">{r['years']}年間で合計 <span style="color:#c0a346; font-size:28px; font-weight:900;">¥{r['total_tax_saving']:,.0f}</span> の節税</p></div></div>""", unsafe_allow_html=True)
 
     # ──── セミナーLP埋め込み ────
     st.markdown("""
