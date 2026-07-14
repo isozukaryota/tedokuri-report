@@ -417,15 +417,9 @@ if r:
     # ──── 法人税の節税効果（目立つ版）────
     st.markdown(f"""<div class="section-card"><h2 style="font-size:22px;">🏢 法人税の節税効果</h2><div style="background:#1a2744; border-radius:8px; padding:24px; text-align:center;"><p style="color:#ffffff; font-size:17px; line-height:1.8; margin-bottom:12px;">会社の経費で年間 <span style="color:#c0a346; font-size:22px; font-weight:900;">¥{r['annual']:,}</span> を処理できるので</p><p style="color:#ffffff; font-size:17px; line-height:1.8; margin-bottom:8px;">法人税の節税効果として</p><p style="color:#c0a346; font-size:36px; font-weight:900; margin-bottom:8px;">年間 ¥{r['annual_tax_saving']:,.0f}</p><p style="color:#ffffff; font-size:18px; font-weight:700; margin:0;">{r['years']}年間で合計 <span style="color:#c0a346; font-size:28px; font-weight:900;">¥{r['total_tax_saving']:,.0f}</span> の節税</p></div></div>""", unsafe_allow_html=True)
 
-    # ──── セミナーLP埋め込み ────
-    st.markdown("""
-    <div style="margin-top:40px;">
-        <iframe src="https://contents.semeru-shigyo.com/401k-seminar/"
-                style="width:100%; border:none; min-height:8000px;"
-                scrolling="no"
-                sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-top-navigation"></iframe>
-    </div>
-    """, unsafe_allow_html=True)
+    # ──── CTA：セミナー案内 ────
+    seminar_lp_url = "https://contents.semeru-shigyo.com/401k-seminar/"
+    st.markdown(f"""<a href="{seminar_lp_url}" target="_blank" style="text-decoration:none;"><div class="cta-box" style="cursor:pointer;"><p style="font-size:16px; color:#ffffff; margin-bottom:16px; line-height:1.8;">会社の経費で個人資産を作れて、社会保険料も安くなる<br>国の制度の使い方について詳しく学びませんか？</p><h2>社長の最終手残り設計セミナーのご案内</h2><p style="font-size:15px; color:#c0c8d8; margin-bottom:12px;">〜会社の経費で老後資金を作りながら、法人税も下げる方法〜</p><p style="font-size:20px; font-weight:900; margin-top:15px; color:#fbbf24;">▶ セミナー詳細を見る</p></div></a>""", unsafe_allow_html=True)
 
     # ──── フッター ────
     st.markdown("""
