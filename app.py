@@ -419,7 +419,7 @@ if r:
 
     # ──── CTA：セミナー案内 ────
     seminar_lp_url = "https://contents.semeru-shigyo.com/401k-seminar/"
-    st.markdown(f"""<a href="{seminar_lp_url}" target="_blank" style="text-decoration:none;"><div class="cta-box" style="cursor:pointer;"><p style="font-size:16px; color:#ffffff; margin-bottom:16px; line-height:1.8;">会社の経費で個人資産を作れて、社会保険料も安くなる<br>国の制度の使い方について詳しく学びませんか？</p><h2>社長の最終手残り設計セミナーのご案内</h2><p style="font-size:15px; color:#c0c8d8; margin-bottom:12px;">〜会社の経費で老後資金を作りながら、法人税も下げる方法〜</p><p style="font-size:20px; font-weight:900; margin-top:15px; color:#fbbf24;">▶ セミナー詳細を見る</p></div></a>""", unsafe_allow_html=True)
+    st.markdown(f"""<a href="{seminar_lp_url}" target="_blank" style="text-decoration:none; color:inherit;"><div class="cta-box" style="cursor:pointer;"><p style="font-size:16px; color:#ffffff; margin-bottom:16px; line-height:1.8;">会社の経費で個人資産を作れて、社会保険料も安くなる<br>国の制度の使い方について詳しく学びませんか？</p><h2>社長の最終手残り設計セミナーのご案内</h2><p style="font-size:15px; color:#c0c8d8; margin-bottom:12px;">〜会社の経費で老後資金を作りながら、法人税も下げる方法〜</p><p style="font-size:20px; font-weight:900; margin-top:15px; color:#fbbf24;">▶ セミナー詳細を見る</p></div></a>""", unsafe_allow_html=True)
 
     # ──── フッター ────
     st.markdown("""
