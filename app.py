@@ -377,8 +377,11 @@ if r:
     """, unsafe_allow_html=True)
 
     # ──── 将来資産（利回り別）── 一番上 ────
-    st.markdown("""<div class="section-card"><h2>📈 将来の資産残高（運用利回り別）</h2>
-    <p style="color:#3a4a5c; font-size:15px; margin-top:-8px; margin-bottom:16px;">この国の制度を導入すると、会社の経費で以下の個人資産を作れる可能性が高いです。</p>""", unsafe_allow_html=True)
+    st.markdown(f"""<div class="section-card"><h2>📈 将来の資産残高（運用利回り別）</h2>
+    <p style="color:#3a4a5c; font-size:15px; margin-top:-8px; margin-bottom:16px;">
+        元本が <strong>¥{r['total_principal']:,}</strong>（{r['until_age']}歳まで毎月¥{r['monthly']:,}を積み立てた結果）で、<br>
+        これだけの個人資産を作れる可能性が高いです！
+    </p>""", unsafe_allow_html=True)
 
     st.markdown(f"""
     <div class="rate-card rate-8">
@@ -398,110 +401,23 @@ if r:
     </div>
     """, unsafe_allow_html=True)
 
+    # ──── 法人税の節税効果（コンパクト）────
     st.markdown(f"""
-    <div class="point-box">
-        元本 <strong>¥{r['total_principal']:,}</strong> に対して、利回り5%なら <strong>¥{r['fv_5']:,.0f}</strong> に。<br>
-        運用益 <strong>¥{r['gain_5']:,.0f}</strong> には税金がかかりません（<strong>運用益非課税</strong>）。
+    <div class="point-box" style="margin-top:20px;">
+        会社の経費で年間 <strong>¥{r['annual']:,}</strong> を処理できるので、<br>
+        法人税の節税効果として <strong>年間 ¥{r['annual_tax_saving']:,.0f}</strong>（{r['years']}年間で合計 <strong>¥{r['total_tax_saving']:,.0f}</strong>）の節税になります。
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # ──── シミュレーション条件 ────
-    st.markdown("""<div class="section-card"><h2>📋 シミュレーション条件</h2>""", unsafe_allow_html=True)
-
-    c1, c2, c3, c4 = st.columns(4)
-    with c1:
-        st.markdown(f'<div class="metric-card"><div class="label">現在の年齢</div><div class="value-white">{r["age"]}歳</div></div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown(f'<div class="metric-card"><div class="label">積立終了年齢</div><div class="value-white">{r["until_age"]}歳</div></div>', unsafe_allow_html=True)
-    with c3:
-        st.markdown(f'<div class="metric-card"><div class="label">積立期間</div><div class="value-white">{r["years"]}年間</div></div>', unsafe_allow_html=True)
-    with c4:
-        st.markdown(f'<div class="metric-card"><div class="label">毎月の掛金</div><div class="value">¥{r["monthly"]:,}</div></div>', unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ──── 掛金は全額経費 ────
-    st.markdown("""<div class="section-card"><h2>💼 掛金は全額「会社の経費」になります</h2><p style="color:#6b7b8d; font-size:13px; margin-top:-8px;">※ 企業型DCの掛金は社長・役員なら全額会社の経費で支払うことが可能です。</p>""", unsafe_allow_html=True)
-
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown(f'<div class="metric-card"><div class="label">年間の掛金</div><div class="value">¥{r["annual"]:,}</div></div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown(f'<div class="metric-card-highlight"><div class="label">{r["years"]}年間の掛金合計（元本）</div><div class="value">¥{r["total_principal"]:,}</div></div>', unsafe_allow_html=True)
-
-    st.markdown(f"""
-    <div class="point-box">
-        <strong>ポイント：</strong>毎月 <strong>¥{r['monthly']:,}</strong> の掛金は、社長個人のお金ではなく
-        <strong>会社の経費</strong>として処理されます。<br>
-        つまり、<strong>社長の老後資金を会社のお金で積み立てている</strong>ことになります。
+    # ──── セミナーLP埋め込み ────
+    st.markdown("""
+    <div style="margin-top:40px;">
+        <iframe src="https://contents.semeru-shigyo.com/401k-seminar/"
+                style="width:100%; border:none; min-height:8000px;"
+                scrolling="no"></iframe>
     </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ──── 法人税の節税効果 ────
-    st.markdown("""<div class="section-card"><h2>🏢 法人税の節税効果</h2>""", unsafe_allow_html=True)
-
-    c1, c2 = st.columns(2)
-    with c1:
-        st.markdown(f'<div class="metric-card"><div class="label">年間の節税額（概算）</div><div class="value">¥{r["annual_tax_saving"]:,.0f}</div></div>', unsafe_allow_html=True)
-    with c2:
-        st.markdown(f'<div class="metric-card-highlight"><div class="label">{r["years"]}年間の節税合計</div><div class="value">¥{r["total_tax_saving"]:,.0f}</div></div>', unsafe_allow_html=True)
-
-    st.markdown(f"""
-    <div class="point-box">
-        掛金は<strong>全額損金算入</strong>されるため、法人税が下がります。<br>
-        法人税率を約{int(r['tax_rate']*100)}%として計算すると、年間 <strong>¥{r['annual']:,}</strong> の掛金に対して
-        <strong>年間 ¥{r['annual_tax_saving']:,.0f} の節税</strong>に。<br>
-        {r['years']}年間で合計 <strong>¥{r['total_tax_saving']:,.0f}</strong> の節税効果です。
-    </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ──── まとめ ────
-    st.markdown("""<div class="section-card"><h2>✅ まとめ：この制度で得られるもの</h2>""", unsafe_allow_html=True)
-
-    total_merit = r['fv_5'] + r['total_tax_saving']
-
-    st.markdown(f"""
-    <table class="summary-table">
-        <tr><th>項目</th><th style="text-align:right;">金額</th></tr>
-        <tr><td>毎月の掛金</td><td style="text-align:right;">¥{r['monthly']:,}（全額会社の経費）</td></tr>
-        <tr><td>{r['years']}年間の元本合計</td><td style="text-align:right;">¥{r['total_principal']:,}</td></tr>
-        <tr><td>将来の資産残高（利回り5%）</td><td style="text-align:right; color:#daa520; font-weight:700;">¥{r['fv_5']:,.0f}</td></tr>
-        <tr><td>うち運用益（非課税）</td><td style="text-align:right;">¥{r['gain_5']:,.0f}</td></tr>
-        <tr><td>法人税の節税合計</td><td style="text-align:right; color:#daa520; font-weight:700;">¥{r['total_tax_saving']:,.0f}</td></tr>
-        <tr class="total-row"><td>実質的な総メリット</td><td style="text-align:right;">¥{total_merit:,.0f}</td></tr>
-    </table>
-    """, unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
-
-    # ──── CTA：セミナー案内 ────
-    seminar_lp_url = "https://contents.semeru-shigyo.com/401k-seminar/"
-    st.markdown(f"""
-    <a href="{seminar_lp_url}" target="_blank" style="text-decoration:none;">
-    <div class="cta-box" style="cursor:pointer; transition: opacity 0.2s;">
-        <p style="font-size:16px; color:#ffffff; margin-bottom:16px; line-height:1.8;">会社の経費で個人資産を作れて、社会保険料も安くなる<br>国の制度の使い方について詳しく学びませんか？</p>
-        <h2>社長の最終手残り設計セミナーのご案内</h2>
-        <p style="font-size:15px; color:#c0c8d8; margin-bottom:12px;">
-            〜会社の経費で老後資金を作りながら、法人税も下げる方法〜
-        </p>
-        <p>
-            このシミュレーションは概算です。<br>
-            実際の導入にあたっては、社長の報酬額・会社の利益状況に応じた詳細な設計が必要です。
-        </p>
-        <p>
-            ✔ 社長の報酬の「手残り」を年間60万円以上増やす方法<br>
-            ✔ 退職金ゼロの会社でも使える仕組みの全体像<br>
-            ✔ 導入企業の具体的な事例
-        </p>
-        <p style="font-size:20px; font-weight:900; margin-top:15px; color:#fbbf24;">▶ セミナー詳細を見る</p>
-    </div>
-    </a>
     """, unsafe_allow_html=True)
 
     # ──── フッター ────
